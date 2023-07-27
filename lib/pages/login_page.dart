@@ -5,13 +5,13 @@ import "package:news_app/widgets/custom_submit_buttom.dart";
 import "package:news_app/widgets/custom_text_field.dart";
 
 class LoginPage extends StatelessWidget {
-  TextEditingController mobileNoCtl = TextEditingController();
-  TextEditingController passwordCtl = TextEditingController();
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController mobileNoCtl = TextEditingController();
+    TextEditingController passwordCtl = TextEditingController();
     return Scaffold(
       body: Column(
         children: [
