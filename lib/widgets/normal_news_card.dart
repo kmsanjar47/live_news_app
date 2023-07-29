@@ -23,7 +23,7 @@ class NormalNewsCard extends StatelessWidget {
                 image: AssetImage(imagePath),
                 fit: BoxFit.fill,
               ),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
             ),
           ),
           SizedBox(width: 20.w,),
