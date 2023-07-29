@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/pages/categories_page.dart';
 import 'package:news_app/pages/home_page.dart';
+import 'package:news_app/pages/login_page.dart';
 import 'package:news_app/pages/search_page.dart';
 import 'package:news_app/pages/setting_before_login_page.dart';
+import 'package:news_app/pages/signup_page.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -16,7 +18,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int currentNavbarIdx = 2;
   List pages = [const HomePage(),
-    const CategoriesPage(),const SearchPage(),const SettingBeforeLoginPage()];
+    const SignUpPage(),const SearchPage(),const SettingBeforeLoginPage()];
   @override
   Widget build(BuildContext context) {
 
