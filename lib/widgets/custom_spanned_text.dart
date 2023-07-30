@@ -1,10 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/pages/signup_page.dart';
 
 class CustomSpannedText extends StatelessWidget {
   final String firstText;
+  void Function() onTap;
   final String secondText;
-  const CustomSpannedText({required this.firstText,required this.secondText,Key? key}) : super(key: key);
+  CustomSpannedText({required this.onTap,required this.firstText,required this.secondText,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class CustomSpannedText extends StatelessWidget {
             ),
           ),
           TextSpan(
+            recognizer: TapGestureRecognizer()..onTap = onTap,
             text: secondText,
             style: TextStyle(
               color: Color(0xFFF1582C),

@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_app/controllers/auth_controller.dart';
 import 'package:news_app/pages/login_page.dart';
-import 'package:news_app/pages/navigation_page.dart';
-import 'package:news_app/pages/setting_before_login_page.dart';
-import 'package:news_app/pages/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+// ...
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider<AuthController>(create: (context)=>AuthController()),
+    ],child: const MyApp(),)
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,8 +29,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(390, 890),
-      minTextAdapt: true,
-      splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -31,7 +40,7 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home:NavigationPage(),
+          home:LoginPage(),
         );
       },
     );

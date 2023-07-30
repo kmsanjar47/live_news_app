@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "314643053617",
+    "project_id": "live-news-app-38536",
+    "storage_bucket": "live-news-app-38536.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314643053617:android:0e0c633169bd46a0d2e910",
+        "android_client_info": {
+          "package_name": "com.example.news_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314643053617-4t9ibpl76mdmv5cckkslk6p7j21phrc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsGw7DcauNG2t4UZJVl2iW0dTRPGb47WI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314643053617-4t9ibpl76mdmv5cckkslk6p7j21phrc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
