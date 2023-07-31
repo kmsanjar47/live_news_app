@@ -1,33 +1,72 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-class AuthController extends ChangeNotifier{
- static void signInWithPhoneAndroid(String phoneNumber)async {
-   await FirebaseAuth.instance.verifyPhoneNumber(
-     phoneNumber: phoneNumber,
-     verificationCompleted: (PhoneAuthCredential credential) {
 
-     },
-     verificationFailed: (FirebaseAuthException e) {
+import '../widgets/show_otp_dialog.dart';
+import '../widgets/show_snackbar.dart';
 
-     },
-     codeSent: (String verificationId, int? resendToken) {
+class AuthController extends ChangeNotifier {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-     },
-     codeAutoRetrievalTimeout: (String verificationId) {
+  // PHONE SIGN IN
+  Future<void> phoneSignIn(
+    BuildContext context,
+    String phoneNumber,
+  ) async {
+    TextEditingController codeController = TextEditingController();
+    if (kIsWeb) {
+      // !!! Works only on web !!!
+      ConfirmationResult result =
+          await _auth.signInWithPhoneNumber(phoneNumber);
 
-     },
-   );
- }
- static signInWithPhoneWeb(String phoneNumber)async{
-   FirebaseAuth auth = FirebaseAuth.instance;
+      // Diplay Dialog Box To accept OTP
+      showOTPDialog(
+        codeController: codeController,
+        context: context,
+        onPressed: () async {
+          PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: result.verificationId,
+            smsCode: codeController.text.trim(),
+          );
 
-// Wait for the user to complete the reCAPTCHA & for an SMS code to be sent.
-   ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber(phoneNumber);
-   return confirmationResult;
+          await _auth.signInWithCredential(credential);
+          Navigator.of(context).pop(); // Remove the dialog box
+        },
+      );
+    } else {
+      // FOR ANDROID, IOS
+      await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        //  Automatic handling of the SMS code
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // !!! works only on android !!!
+          await _auth.signInWithCredential(credential);
+        },
+        // Displays a message when verification fails
+        verificationFailed: (e) {
+          showSnackBar(context, e.message!);
+        },
+        // Displays a dialog box when OTP is sent
+        codeSent: ((String verificationId, int? resendToken) async {
+          showOTPDialog(
+            codeController: codeController,
+            context: context,
+            onPressed: () async {
+              PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                verificationId: verificationId,
+                smsCode: codeController.text.trim(),
+              );
 
-
- }
- static confirmPhoneWeb(ConfirmationResult confirmationResult, String code)async{
-   UserCredential userCredential = await confirmationResult.confirm(code);
- }
+              // !!! Works only on Android, iOS !!!
+              await _auth.signInWithCredential(credential);
+              Navigator.of(context).pop(); // Remove the dialog box
+            },
+          );
+        }),
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Auto-resolution timed out...
+        },
+      );
+    }
+  }
 }

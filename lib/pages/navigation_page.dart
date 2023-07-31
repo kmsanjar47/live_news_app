@@ -16,7 +16,7 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  int currentNavbarIdx = 2;
+  int currentNavbarIdx = 0;
   List pages = [const HomePage(),
     const SignUpPage(),const SearchPage(),const SettingBeforeLoginPage()];
   @override

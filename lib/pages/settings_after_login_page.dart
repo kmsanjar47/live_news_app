@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/widgets/custom_submit_buttom.dart';
-
-class SettingBeforeLoginPage extends StatelessWidget {
-  const SettingBeforeLoginPage({super.key});
+class SettingsAfterLoginPage extends StatelessWidget {
+  const SettingsAfterLoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +33,6 @@ class SettingBeforeLoginPage extends StatelessWidget {
               ],
             ),
           ),
-          Center(child: CustomSubmitButton(buttonText: "Logout",onTap: ()async{
-            await FirebaseAuth.instance.signOut();
-          },),)
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
+import "package:news_app/controllers/auth_controller.dart";
 import "package:news_app/pages/signup_page.dart";
 import "package:news_app/widgets/custom_spanned_text.dart";
 import "package:news_app/widgets/custom_submit_buttom.dart";
@@ -32,13 +33,18 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 29.h,
             ),
-            CustomSubmitButton(onTap:()async{
-              FirebaseAuth auth = FirebaseAuth.instance;
+            CustomSubmitButton(onTap:(){
 
 // Wait for the user to complete the reCAPTCHA & for an SMS code to be sent.
-              ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber("+8801768976882");
               // UserCredential userCredential = await confirmationResult.confirm("");
             },buttonText: "Login"),
+            SizedBox(height: 5.h,),
+            CustomSubmitButton(onTap:()async{
+              await AuthController().phoneSignIn(context, mobileNoCtl.text.trim());
+
+// Wait for the user to complete the reCAPTCHA & for an SMS code to be sent.
+              // UserCredential userCredential = await confirmationResult.confirm("");
+            },buttonText: "Phone Login"),
             SizedBox(height: 20.h),
             CustomSpannedText(
                 onTap: () {},

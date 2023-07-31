@@ -16,7 +16,6 @@ class SignUpPage extends StatelessWidget {
     TextEditingController nameTxtCtl = TextEditingController();
     TextEditingController mobileTxtCtl = TextEditingController();
     TextEditingController passwordTxtCtl = TextEditingController();
-    TextEditingController otpTxtCtl = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -33,29 +32,7 @@ class SignUpPage extends StatelessWidget {
             SizedBox(height: 10.h,),
             CustomTextField(passwordTxtCtl, hintText: "Enter New Password", titleText: "Password"),
             SizedBox(height: 20.h,),
-            CustomSubmitButton(onTap:()async{
-              String otpText;
-              ConfirmationResult confirmationResult = await AuthController.signInWithPhoneWeb(mobileTxtCtl.text);
-              otpText = await showDialog(context: context, builder: (BuildContext context){
-                return Dialog(backgroundColor: Colors.transparent,
-                  child: Container(
-                    width: 150.w,
-                    height: 150.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5.r),),
-                    ),
-                    child: Column(
-                      children: [
-                        CustomTextField(hintText: "Enter Code",titleText: "OTP",otpTxtCtl),
-                        CustomSubmitButton(onTap: (){
-                          return Navigator.of(context).pop(otpTxtCtl.text);
-                        }, buttonText: "Submit")
-                      ],
-                    ),
-                  ),
-                );
-              });
-              await AuthController.confirmPhoneWeb(confirmationResult, otpText);
+            CustomSubmitButton(onTap:(){
 
             },buttonText: "Create Account"),
             SizedBox(height: 23.h,),
