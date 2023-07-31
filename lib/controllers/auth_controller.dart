@@ -7,6 +7,7 @@ import '../widgets/show_snackbar.dart';
 
 class AuthController extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoading = false;
 
   // PHONE SIGN IN
   Future<void> phoneSignIn(
@@ -41,6 +42,8 @@ class AuthController extends ChangeNotifier {
         verificationCompleted: (PhoneAuthCredential credential) async {
           // !!! works only on android !!!
           await _auth.signInWithCredential(credential);
+          AuthController().isLoading = false;
+          notifyListeners();
         },
         // Displays a message when verification fails
         verificationFailed: (e) {
