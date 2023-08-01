@@ -28,10 +28,9 @@ class NormalNewsCard extends StatelessWidget {
           ),
           SizedBox(width: 20.w,),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 5.h,),
               Row(
                   children: categoryList
               ),

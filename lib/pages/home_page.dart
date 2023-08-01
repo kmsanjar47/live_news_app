@@ -62,15 +62,16 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10.h,),
-                  SizedBox(
-                    height: 219.h,
+                  Container(
+                    height: 221.h,
                     child: ListView.separated(
+                      padding: EdgeInsets.only(bottom: 2.h),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (index,context){
                           return Container(
-                            width: 154,
-                            height: 219,
+
+                            width: 154.w,
                             decoration: ShapeDecoration(
                               image: const DecorationImage(
                                 image: AssetImage("assets/images/2ff8debe6b82ad6b44d242e83f8dac8d.jpg"),
@@ -80,7 +81,10 @@ class HomePage extends StatelessWidget {
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
                             ),
                             child: Container(
-                              decoration: const BoxDecoration(
+                              width: 154.w,
+                              padding: EdgeInsets.only(left:8.w,right:8.w),
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
                                 gradient: LinearGradient(
                                   begin: Alignment(0.00, -1.00),
                                   end: Alignment(0, 1),
@@ -88,27 +92,40 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                 CategoryChip(backgroundColor: Colors.white.withOpacity(0.10000000149011612), centerText: "National", textColor: Colors.white),
-                                const Text(
-                                  'ফেরি চলাচলের নতুন নিয়ম\n শিমুলিয়া-বাংলাবাজার রুটে',
+                                SizedBox(height: 5.h,),
+                                Text(
+                                  'ফেরি চলাচলের নতুন নিয়ম\nশিমুলিয়া-বাংলাবাজার রুটে',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 11,
+                                    fontSize: 11.sp,
                                     fontFamily: 'Hind Siliguri',
                                     fontWeight: FontWeight.w400,
-                                    height: 15,
                                   ),
-                                )
+                                ),
+                                  SizedBox(height: 10.h,),
                               ],),
                             ),
                           );
                         }, separatorBuilder: (index,context){
                       return SizedBox(width: 10.w,);
                     }, itemCount: 5),
-                  )
+                  ),
+                  SizedBox(height: 10.h,),
+                  ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (index,context){return  NormalNewsCard(categoryList: [const CategoryChip(backgroundColor: Color(0x19F1582C),centerText: "Breaking News",textColor: Color(0xFFF1582C),),
+                        SizedBox(width: 2.w,),
+                        const CategoryChip(backgroundColor: Color(0x19494949),centerText: "National",textColor: Color(0xFF494949),),], imagePath: 'assets/images/2ff8debe6b82ad6b44d242e83f8dac8d.jpg',
+                        titleText: "Inauguration of the dream \nPadma Bridge on June 25",
+                        timeText: "10 minutes ago",
+                      );}, separatorBuilder: (index,context){
+                    return SizedBox(height: 10.h,);
+                  }, itemCount: 3),
 
                 ],
               ),

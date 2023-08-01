@@ -5,6 +5,7 @@ import 'package:news_app/pages/home_page.dart';
 import 'package:news_app/pages/login_page.dart';
 import 'package:news_app/pages/search_page.dart';
 import 'package:news_app/pages/setting_before_login_page.dart';
+import 'package:news_app/pages/settings_after_login_page.dart';
 import 'package:news_app/pages/signup_page.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int currentNavbarIdx = 0;
   List pages = [const HomePage(),
-    const SignUpPage(),const SearchPage(),const SettingBeforeLoginPage()];
+    const CategoriesPage(),const SearchPage(),const SettingsAfterLoginPage()];
   @override
   Widget build(BuildContext context) {
 
