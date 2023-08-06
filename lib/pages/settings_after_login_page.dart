@@ -123,6 +123,7 @@ class SettingsAfterLoginPage extends StatelessWidget {
                 )
               ],),
           ),
+          SizedBox(height: 20.h,),
 
           Padding(
             padding: EdgeInsets.only(left: 22.0.w,right: 21.w),
@@ -133,6 +134,7 @@ class SettingsAfterLoginPage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (index,context){
                     return Container(
+                      padding: EdgeInsets.only(left: 10.w,right: 10.w),
                       width: 358.w,
                       height: 60.h,
                       decoration: ShapeDecoration(
