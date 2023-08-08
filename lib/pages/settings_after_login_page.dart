@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/controllers/news_controller.dart';
 
+import '../models/news_model.dart';
 import '../widgets/custom_submit_buttom.dart';
 class SettingsAfterLoginPage extends StatelessWidget {
   const SettingsAfterLoginPage({super.key});
@@ -163,7 +165,8 @@ class SettingsAfterLoginPage extends StatelessWidget {
             ),
           ),
           Center(child: CustomSubmitButton(buttonText: "Logout",onTap: ()async{
-            await FirebaseAuth.instance.signOut();
+            NewsModel data = await NewsController().fetchAllNews();
+            print(data.articles);
           },),),
           SizedBox(height: 32.h,),
           Padding(

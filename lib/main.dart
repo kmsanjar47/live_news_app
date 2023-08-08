@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/controllers/auth_controller.dart';
+import 'package:news_app/controllers/news_controller.dart';
 import 'package:news_app/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:news_app/pages/navigation_page.dart';
@@ -20,6 +21,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider<AuthController>(
           create: (context) => AuthController()),
+      ChangeNotifierProvider<NewsController>(create: (context)=>NewsController())
     ],
     child: const MyApp(),
   ));

@@ -6,11 +6,13 @@ class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
   getUserData()async{
     final dio = Dio();
-    Response response = await dio.get("")
+    Response response = await dio.get("https://etldev.xyz/traning/public/api/show-user");
+    print(response.data.toString());
   }
 
   @override
   Widget build(BuildContext context) {
+    getUserData();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
