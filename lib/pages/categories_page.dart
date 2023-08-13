@@ -7,7 +7,6 @@ class CategoriesPage extends StatelessWidget {
   getUserData()async{
     final dio = Dio();
     Response response = await dio.get("https://etldev.xyz/traning/public/api/show-user");
-    print(response.data.toString());
   }
 
   @override

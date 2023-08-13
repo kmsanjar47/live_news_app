@@ -165,8 +165,8 @@ class SettingsAfterLoginPage extends StatelessWidget {
             ),
           ),
           Center(child: CustomSubmitButton(buttonText: "Logout",onTap: ()async{
-            NewsModel data = await NewsController().fetchAllNews();
-            print(data.articles);
+            NewsModel? data = await NewsController().fetchAllNews();
+            print(data!.articles);
           },),),
           SizedBox(height: 32.h,),
           Padding(
