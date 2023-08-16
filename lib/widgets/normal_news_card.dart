@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class NormalNewsCard extends StatelessWidget {
   final String titleText;
   final String timeText;
-  final String imagePath;
+  final ImageProvider<Object>? imagePath;
   final List<Widget> categoryList;
   const NormalNewsCard({required this.categoryList,required this.imagePath,required this.timeText,required this.titleText,super.key});
 
@@ -12,23 +12,21 @@ class NormalNewsCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 16.0.w,right: 13.w),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 130,
-            height: 90,
+            width: 130.w,
+            height: 90.h,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: AssetImage(imagePath),
-                fit: BoxFit.fill,
+                image: imagePath??const NetworkImage("https://placehold.co/600x400?text=No+Source+image"),
+                fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
             ),
           ),
           SizedBox(width: 20.w,),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -37,7 +35,9 @@ class NormalNewsCard extends StatelessWidget {
               SizedBox(height: 5.h,),
               Text(
                 titleText,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
+
                   color: Color(0xFF0F0E0E),
                   fontSize: 17.sp,
                   fontWeight: FontWeight.w400,
@@ -47,7 +47,9 @@ class NormalNewsCard extends StatelessWidget {
 
               Text(
                 timeText,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
+
                   color: Color(0xFF494949),
                   fontSize: 9.sp,
 

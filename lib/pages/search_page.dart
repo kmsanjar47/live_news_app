@@ -42,7 +42,7 @@ class SearchPage extends StatelessWidget {
               itemBuilder: (context,index){
               return NormalNewsCard(categoryList: [const CategoryChip(backgroundColor: Color(0x19F1582C),centerText: "Breaking News",textColor: Color(0xFFF1582C),),
                 SizedBox(width: 2.w,),
-                const CategoryChip(backgroundColor: Color(0x19494949),centerText: "National",textColor: Color(0xFF494949),),], imagePath: 'assets/images/2ff8debe6b82ad6b44d242e83f8dac8d.jpg',
+                const CategoryChip(backgroundColor: Color(0x19494949),centerText: "National",textColor: Color(0xFF494949),),], imagePath: null,
                 titleText: "Inauguration of the dream \nPadma Bridge on June 25",
                 timeText: "10 minutes ago",
               );}

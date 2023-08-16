@@ -44,6 +44,10 @@ dependencies:
   firebase_auth: ^4.7.2
   firebase_auth_web: ^5.6.2
   dio: ^5.3.2
+  hive:
+  hive_flutter:
+  path_provider:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
@@ -73,7 +77,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-    - assets/icons/
+    - assets/icons/    - assets/images/placeholder.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

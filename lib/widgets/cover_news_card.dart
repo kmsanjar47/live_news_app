@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'category_chip.dart';
 class CoverNewsCard extends StatelessWidget {
   final bool isRounded;
   final String titleText;
   final String mainText;
   final String timeText;
-  final String imagePath;
+  final ImageProvider<Object>? imagePath;
   final List<Widget> categoryList;
   const CoverNewsCard({required this.isRounded,required this.categoryList,required this.imagePath,required this.mainText,required this.timeText,required this.titleText,super.key});
 
@@ -22,8 +20,8 @@ class CoverNewsCard extends StatelessWidget {
           height: 200.h,
           decoration: ShapeDecoration(
             image: DecorationImage(
-              image: AssetImage(imagePath),
-              fit: BoxFit.fill,
+              image: imagePath??const AssetImage("assets/images/placeholder.png"),
+              fit: BoxFit.cover,
             ),
             shape: RoundedRectangleBorder(borderRadius: isRounded!=false?BorderRadius.circular(5.r):BorderRadius.circular(0)),
           ),
@@ -44,6 +42,7 @@ class CoverNewsCard extends StatelessWidget {
               Text(
                 titleText,
                 style: TextStyle(
+
                   color: Color(0xFF0F0E0E),
                   fontSize: 17.sp,
                   fontWeight: FontWeight.w400,

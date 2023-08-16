@@ -2,17 +2,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:news_app/controllers/auth_controller.dart';
 import 'package:news_app/controllers/news_controller.dart';
 import 'package:news_app/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:news_app/pages/navigation_page.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'models/news_model.dart';
 
 void main() async {
 // ...
   WidgetsFlutterBinding.ensureInitialized();
+  var storagePermissionStatus = await Permission.storage.request();
+  if(storagePermissionStatus.isGranted){
+    print("permission granted");
+  }
+  else if(storagePermissionStatus.isDenied){
+
+  }
+  Hive.initFlutter();
+  Hive.registerAdapter(NewsModelAdapter());
+  Hive.registerAdapter(ArticlesAdapter());
+  Hive.registerAdapter(SourceAdapter());
+  Hive.openBox("Articles");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

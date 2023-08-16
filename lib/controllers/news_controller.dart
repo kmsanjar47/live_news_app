@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import 'package:news_app/models/news_model.dart';
+import 'package:news_app/repository/local/db_helper.dart';
 import 'package:news_app/repository/news_repo.dart';
 
 class NewsController extends ChangeNotifier {
@@ -16,15 +18,19 @@ class NewsController extends ChangeNotifier {
     return data;
 
   }
-  fetchArticles() async{
-    List<Articles> articleListTemp = [];
+  addArticlesToDB() async{
+    List articleListTemp = [];
     NewsModel? data = await fetchAllNews();
     for (Articles element in data!.articles!) {
       articleListTemp.add(element);
     }
-    articleList = articleListTemp;
-    print(articleList);
+    Box box = await DbHelper().addToDB("Articles","articles",articleListTemp);
+    articleList = box.get("articles");
     notifyListeners();
-
+  }
+  updateArticlesfromDB() async{
+    Box box = await DbHelper().openDbBox("Articles");
+    articleList = box.get("articles");
+    notifyListeners();
   }
 }
